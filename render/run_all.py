@@ -89,8 +89,8 @@ todo = [s for s in SHOTS if picked(s)]
 log(f'{len(todo)} shots to check')
 fails = 0
 for i, s in enumerate(todo, 1):
-    if fails >= 3:
-        log('STOPPED after 3 failures in a row: send Claude the logs/<shot>.log of the first one.')
+    if fails >= 8:
+        log('STOPPED after 8 failures in a row: send Claude the logs/<shot>.log of the first one.')
         break
     done_marker = os.path.join(FRAMES, s['name'], 'DONE')
     if s.get('still') and os.path.exists(done_marker):
