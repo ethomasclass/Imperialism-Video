@@ -1,0 +1,53 @@
+{
+  "note": "Every final Blender render, in order. args = [scale%, mode...] after the output folder. Shots marked untested have not yet rendered a frame in the cloud tests; the lead checks them before you run the whole list.",
+  "shots": [
+    {"name": "board_docks", "group": "boards", "script": "docks.py", "args": [100, "anim"], "env": {"FRAMES": "52,335"}, "still": true,
+     "copy": [["0052.png", "build/pitchroom/board_docks_in.png"], ["0335.png", "build/pitchroom/board_docks_out.png"]]},
+    {"name": "board_lecture", "group": "boards", "script": "lecture.py", "args": [100, "anim"], "env": {"FRAMES": "35"}, "still": true,
+     "copy": [["0035.png", "build/pitchroom/board_lecture.png"]]},
+    {"name": "board_church", "group": "boards", "script": "church_interior.py", "args": [100], "env": {"FRAMES": "0"}, "still": true,
+     "copy": [["0000.png", "build/pitchroom/board_church.png"]]},
+
+    {"name": "co_decl_in", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "decl_in"}},
+    {"name": "co_decl_out", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "decl_out"}},
+    {"name": "co_window_push", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "window_push"}},
+    {"name": "co_window_room", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "window_room"}},
+    {"name": "co_later_light", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "later_light"}},
+    {"name": "co_flag_swap", "group": "coldopen", "script": "coldopen.py", "args": [0, 0, 100], "env": {"TAIL": "flag_swap"}, "untested": true},
+
+    {"name": "pr_j04", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j04"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+    {"name": "pr_pitch", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "pitch"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+    {"name": "pr_j05", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j05"], "env": {"FRAMES": "0::1", "SAMPLES": 24}},
+    {"name": "pr_j06", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j06"], "env": {"FRAMES": "0::1", "SAMPLES": 24}},
+    {"name": "pr_j08", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j08"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+    {"name": "pr_j09", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j09"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+    {"name": "pr_j10", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "j10"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+    {"name": "pr_same", "group": "pitchroom", "script": "pitchroom.py", "args": [100, "same"], "env": {"FRAMES": "0::1", "SAMPLES": 24}, "untested": true},
+
+    {"name": "map_dive", "group": "maps", "script": "mapshots.py", "args": [100, "dive"], "env": {"SAMPLES": 32}},
+    {"name": "map_pacific", "group": "maps", "script": "mapshots.py", "args": [100, "pacific"], "env": {"SAMPLES": 32}, "untested": true},
+    {"name": "map_oahu8", "group": "maps", "script": "mapshots.py", "args": [100, "oahu8"], "env": {"SAMPLES": 32}, "untested": true},
+    {"name": "map_pearl", "group": "maps", "script": "mapshots.py", "args": [100, "pearl"], "env": {"SAMPLES": 32}, "untested": true},
+    {"name": "map_quiet", "group": "maps", "script": "mapshots.py", "args": [100, "quiet"], "env": {"SAMPLES": 32, "MESH": "hi"}, "untested": true},
+
+    {"name": "docks", "group": "sets", "script": "docks.py", "args": [100, "anim"]},
+    {"name": "sugar", "group": "sets", "script": "sugar.py", "args": [100, "anim"]},
+    {"name": "sugar_fields", "group": "sets", "script": "sugar.py", "args": [100, "fields"], "untested": true},
+    {"name": "sugar_rise", "group": "sets", "script": "sugar.py", "args": [100, "rise"], "untested": true},
+    {"name": "committee", "group": "sets", "script": "committee.py", "args": [100, "anim"], "env": {"FRAMES": "all"}},
+    {"name": "committee_window", "group": "sets", "script": "committee.py", "args": [100, "window"], "alpha": true},
+    {"name": "harbor", "group": "sets", "script": "harbor.py", "args": [100, "anim"]},
+    {"name": "harbor_head", "group": "sets", "script": "harbor.py", "args": [100, "head"], "untested": true},
+    {"name": "harbor_wipe", "group": "sets", "script": "harbor.py", "args": [100, "wipe"], "untested": true},
+    {"name": "harbor_sack", "group": "sets", "script": "harbor.py", "args": [100, "sack"], "untested": true},
+    {"name": "landing", "group": "sets", "script": "landing.py", "args": [100, "anim"]},
+    {"name": "govbuilding", "group": "sets", "script": "govbuilding.py", "args": [100, "anim"], "env": {"FRAMES": "all"}},
+    {"name": "gov_flagrun", "group": "sets", "script": "govbuilding.py", "args": [100, "flagrun"], "untested": true},
+    {"name": "pineapple", "group": "sets", "script": "pineapple.py", "args": [100, "anim"]},
+    {"name": "pineapple_run", "group": "sets", "script": "pineapple.py", "args": [100, "run"], "untested": true},
+    {"name": "senate", "group": "sets", "script": "senate.py", "args": [100, "anim"], "env": {"FRAMES": "all"}},
+    {"name": "senate_reveal", "group": "sets", "script": "senate.py", "args": [100, "reveal"], "untested": true},
+    {"name": "lecture", "group": "sets", "script": "lecture.py", "args": [100, "anim"], "env": {"FRAMES": "all"}},
+    {"name": "church", "group": "sets", "script": "church_interior.py", "args": [100], "env": {"FRAMES": "all"}}
+  ]
+}

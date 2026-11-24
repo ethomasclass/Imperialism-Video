@@ -1,0 +1,5 @@
+frames/
+logs/*.log
+!logs/run_all.log
+__pycache__/
+.DS_Store
