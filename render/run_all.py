@@ -48,7 +48,7 @@ def render(s):
     out = os.path.join(FRAMES, s['name'])
     os.makedirs(out, exist_ok=True)
     script = os.path.join(EP, 'blender', s['script'])
-    args = [BLENDER, '-b', '--python', script, '--', out] + [str(a) for a in s.get('args', [])]
+    args = [BLENDER, '-b', '--python-exit-code', '1', '--python', script, '--', out] + [str(a) for a in s.get('args', [])]
     env = dict(os.environ)
     env.update({k: str(v) for k, v in s.get('env', {}).items()})
     t = time.time()
@@ -81,13 +81,17 @@ def encode(s):
     return ok
 
 
-log(f'Blender {bpy.app.version_string}  ({BLENDER})')
+log(f'Blender {bpy.app.version_string}  ({BLENDER})  shots asked for: {sorted(want) or "all"}')
 if bpy.app.version >= (4, 2, 0):
     log('STOP: these scripts need Blender 4.0 or 4.1 (4.2 replaced the EEVEE renderer). See README.md.')
     sys.exit(1)
 todo = [s for s in SHOTS if picked(s)]
 log(f'{len(todo)} shots to check')
+fails = 0
 for i, s in enumerate(todo, 1):
+    if fails >= 3:
+        log('STOPPED after 3 failures in a row: send Claude the logs/<shot>.log of the first one.')
+        break
     done_marker = os.path.join(FRAMES, s['name'], 'DONE')
     if s.get('still') and os.path.exists(done_marker):
         continue
@@ -96,6 +100,9 @@ for i, s in enumerate(todo, 1):
         continue
     log(f"[{i}/{len(todo)}] {s['name']}")
     if render(s):
+        fails = 0
         if encode(s) and s.get('still'):
             open(done_marker, 'w').close()
+    else:
+        fails += 1
 log('ALL DONE. Commit and push the renders/ folder (and frames/ for the stills) with GitHub Desktop.')
