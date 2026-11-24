@@ -14,7 +14,7 @@ LOGS = os.path.join(ROOT, 'logs')
 for d in (FRAMES, RENDERS, LOGS):
     os.makedirs(d, exist_ok=True)
 BLENDER = bpy.app.binary_path
-SHOTS = json.load(open(os.path.join(ROOT, 'render', 'shots.json')))['shots']
+SHOTS = json.load(open(os.path.join(ROOT, 'render', 'shots.json'), encoding='utf-8'))['shots']
 argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 want = set(argv)
 
@@ -48,7 +48,7 @@ def render(s):
     out = os.path.join(FRAMES, s['name'])
     os.makedirs(out, exist_ok=True)
     script = os.path.join(EP, 'blender', s['script'])
-    args = [BLENDER, '-b', '--python-exit-code', '1', '--python', script, '--', out] + [str(a) for a in s.get('args', [])]
+    args = [BLENDER, '-b', '--python-exit-code', '1', '--python', os.path.join(ROOT, 'render', 'utf8.py'), '--python', script, '--', out] + [str(a) for a in s.get('args', [])]
     env = dict(os.environ)
     env.update({k: str(v) for k, v in s.get('env', {}).items()})
     t = time.time()
